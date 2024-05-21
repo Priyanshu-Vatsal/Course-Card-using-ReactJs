@@ -1,26 +1,29 @@
 import React from "react";
 import Card from "./Card";
 
-function Cards({course}){
+function Cards(props){
 
-    let allCourses=[];
+    let course=props.course;
 
-    //it return a list of all courses received fromt the api
-    const getCouses=()=>{
-        Object.values(course).forEach((courseCategory)=>{
-            courseCategory.forEach((course)=>{
-                allCourses.push(course);
+    function getCouses(){
+
+        let allCourses=[];
+
+        Object.values(course).forEach(array =>{
+            array.forEach(courseData =>{
+                allCourses.push(courseData);
             })
         })
+
         return allCourses;
     }
 
     return(
-        <div>
-            
+        <div className="flex flex-wrap justify-center gap-4 mb-4">
+
             {
                 getCouses().map((course) =>{
-                    return <Card key={course.key} course={course}></Card>
+                    return <Card key={course.id} course={course}></Card>
                 })
             }
         </div>
